@@ -220,11 +220,12 @@ having count(film.film_id) >= all -- finds the max
 
 -- Question 5
 -- selects only the movies rented from Mike's store for exactly 10 days
-select count(film.film_id), film.rental_duration
+select count(distinct film.film_id)
 from film join inventory on film.film_id = inventory.film_id
+	join rental on inventory.inventory_id = rental.inventory_id
 	join store on inventory.store_id = store.store_id
     join staff on store.store_id = staff.store_id
-where staff.first_name = 'Mike' and rental_duration = 10;
+where staff.first_name = 'Mike' and datediff(rental.return_date, rental.rental_date) = 10;
 
 -- Question 6
 -- selects the movie with the largest cast of actors
