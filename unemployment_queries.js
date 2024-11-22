@@ -55,13 +55,6 @@ db.unemployment.aggregate([
           $gt: 10
         }
       }
-  },
-  {
-    $count:
-      /**
-       * Provide the field name for the count.
-       */
-      "Counties_gt"
   }
 ])
 
