@@ -83,6 +83,20 @@ db.unemployment.aggregate([
 Question 6
 Query to find all counties with an unemployment rate between 5% and 8%.
   */
+db.unemployment.aggregate([
+  {
+    $match:
+      /**
+       * query: The query in MQL.
+       */
+      {
+        Rate: {
+          $gt: 5.0,
+          $lt: 8.0
+        }
+      }
+  }
+])
 
 /*
 Question 7
