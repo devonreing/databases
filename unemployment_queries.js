@@ -44,6 +44,26 @@ db.unemployment.find({Rate : {$lt: 1.0}}).count()
 /* Question 4
   Query to find all counties with unemployment rate higher than 10%
   */
+db.unemployment.aggregate([
+  {
+    $match:
+      /**
+       * query: The query in MQL.
+       */
+      {
+        Rate: {
+          $gt: 10
+        }
+      }
+  },
+  {
+    $count:
+      /**
+       * Provide the field name for the count.
+       */
+      "Counties_gt"
+  }
+])
 
 
 /*
