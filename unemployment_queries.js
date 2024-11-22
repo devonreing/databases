@@ -102,6 +102,37 @@ db.unemployment.aggregate([
 Question 7
 Query to find the state with the highest unemployment rate. Hint. Use { $limit: 1 }
   */
+db.unemployment.aggregate([
+  {
+    $group:
+      /**
+       * _id: The id of the group.
+       * fieldN: The first field name.
+       */
+      {
+        _id: "$State",
+        state_avg: {
+          $avg: "$Rate"
+        }
+      }
+  },
+  {
+    $sort:
+      /**
+       * Provide any number of field/order pairs.
+       */
+      {
+        state_rates: 1
+      }
+  },
+  {
+    $limit:
+      /**
+       * Provide the number of documents to limit.
+       */
+      1
+  }
+])
 
 /*
 Question 8
