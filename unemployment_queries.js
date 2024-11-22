@@ -63,6 +63,21 @@ db.unemployment.aggregate([
 Question 5
 Query to calculate the average unemployment rate across all states.
   */
+db.unemployment.aggregate([
+  {
+    $group:
+      /**
+       * _id: The id of the group.
+       * fieldN: The first field name.
+       */
+      {
+        _id: null,
+        avg_rate: {
+          $avg: "$Rate"
+        }
+      }
+  }
+])
 
 /*
 Question 6
