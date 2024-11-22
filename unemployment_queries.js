@@ -138,6 +138,26 @@ db.unemployment.aggregate([
 Question 8
 Query to count how many counties have an unemployment rate above 5%.
   */
+db.unemployment.aggregate([
+  {
+    $match:
+      /**
+       * query: The query in MQL.
+       */
+      {
+        Rate: {
+          $gt: 5
+        }
+      }
+  },
+  {
+    $count:
+      /**
+       * Provide the field name for the count.
+       */
+      "county_rates_count"
+  }
+])
 
 /*
 Question 9
