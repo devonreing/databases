@@ -163,3 +163,21 @@ db.unemployment.aggregate([
 Question 9
 Query to calculate the average unemployment rate per state by year.
   */
+db.unemployment.aggregate([
+  {
+    $group:
+      /**
+       * _id: The id of the group.
+       * fieldN: The first field name.
+       */
+      {
+        _id: {
+          Year: "$Year",
+          State: "$State"
+        },
+        yearly_rate: {
+          $avg: "$Rate"
+        }
+      }
+  }
+])
